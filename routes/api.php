@@ -15,5 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    Route::post('register', 'register'); // So this is basically just setting up the route that will match requests
+    Route::post('login', 'login');
+    Route::post('logout', 'logout');
     return $request->user();
 });
