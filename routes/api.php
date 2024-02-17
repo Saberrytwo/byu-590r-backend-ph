@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::controller(RegisterController::class)->group(function() {
     Route::post('register', 'register'); // So this is basically just setting up the route that will match requests
     Route::post('login', 'login');
     Route::post('logout', 'logout');
-    return $request->user();
 });
