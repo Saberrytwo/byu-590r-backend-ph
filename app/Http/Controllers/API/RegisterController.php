@@ -58,6 +58,4 @@ class RegisterController extends BaseController
 
         return $this->sendResponse($success, 'User logout successfully. Token cleared.');
     }
-
-
 }
