@@ -28,6 +28,11 @@ class CharactersSeeder extends Seeder{
                     ['name' => 'Meteor Knuckle', 'buttons' => 'Air Right A'],
                     ['name' => 'Drop Knuckle', 'buttons' => 'Air Left A'],
                     ['name' => 'Air Slash', 'buttons' => 'Air Up A'],
+                ],
+                'theme' => [
+                    'title' => 'Mario\'s Victory',
+                    'duration' => '3:45',
+                    'imageURL' => 'images/themes/mario_victory.jpeg',
                 ]
             ],
             [
@@ -50,6 +55,11 @@ class CharactersSeeder extends Seeder{
                     ['name' => 'Aerial Gyro', 'buttons' => 'Air Right A'],
                     ['name' => 'Air Blast', 'buttons' => 'Air Left A'],
                     ['name' => 'Rocket Jump', 'buttons' => 'Air Up A'],
+                ],
+                'theme' => [
+                    'title' => 'R.O.B. Rave',
+                    'duration' => '2:58',
+                    'imageURL' => 'images/themes/rob_theme.jpeg',
                 ]
             ],
             [
@@ -72,6 +82,11 @@ class CharactersSeeder extends Seeder{
                     ['name' => 'Electroweb', 'buttons' => 'Air Right A'],
                     ['name' => 'Quick Attack', 'buttons' => 'Air Left A'],
                     ['name' => 'Thunder', 'buttons' => 'Air Up A'],
+                ],
+                'theme' => [
+                    'title' => 'Pikachu\'s Jukebox',
+                    'duration' => '3:10',
+                    'imageURL' => 'images/themes/pikachu_theme.jpeg',
                 ]
             ],
             [
@@ -94,6 +109,11 @@ class CharactersSeeder extends Seeder{
                     ['name' => 'Plasma Blast', 'buttons' => 'Air Right A'],
                     ['name' => 'Screw Attack', 'buttons' => 'Air Left A'],
                     ['name' => 'Space Jump', 'buttons' => 'Air Up A'],
+                ],
+                'theme' => [
+                    'title' => 'Samus\'s Symphony',
+                    'duration' => '4:02',
+                    'imageURL' => 'images/themes/samus_theme.jpeg',
                 ]
             ],
             [
@@ -116,6 +136,11 @@ class CharactersSeeder extends Seeder{
                     ['name' => 'Flying Slam', 'buttons' => 'Air Right A'],
                     ['name' => 'Spinning Kong', 'buttons' => 'Air Left A'],
                     ['name' => 'Ground Pound', 'buttons' => 'Air Up A'],
+                ],
+                'theme' => [
+                    'title' => 'DK Island Swing',
+                    'duration' => '3:24',
+                    'imageURL' => 'images/themes/dk_theme.jpeg',
                 ]
             ],
         ];
