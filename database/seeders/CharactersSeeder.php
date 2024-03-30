@@ -152,6 +152,6 @@ class CharactersSeeder extends Seeder{
 
         Character::insert($characters);
         Move::insert($moves);
-        Theme::insert();
+        Theme::insert($themes);
     }
 } 
