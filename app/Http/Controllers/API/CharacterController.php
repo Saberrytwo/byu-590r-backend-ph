@@ -17,7 +17,7 @@ class CharacterController extends BaseController
         foreach($characters as $character){
             $character->imageURL = $this->getS3Url($character->imageURL);
 
-            if($character->theme && $character->theme->imageURL){
+            if($character->theme && $character->theme->imageURL && $character->theme->imageURL !== null){
                 $character->theme->imageURL = $this->getS3Url($character->theme->imageURL);
             }
             
