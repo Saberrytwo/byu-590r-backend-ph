@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Support\Facades\Storage;
 
@@ -52,14 +53,15 @@ class BaseController extends Controller
 
    public function getS3Url($path,$minutes=10)
    {
-   if(!$path) {
-   return null;
-   }
-   $s3 = Storage::disk('s3');
-   if($minutes === null){
-   $s3->setVisibility($path, "public");
-   return $s3->url($path);
-   }
+    Log::info($path);
+    if(!$path) {
+    return null;
+    }
+    $s3 = Storage::disk('s3');
+    if($minutes === null){
+        $s3->setVisibility($path, "public");
+        return $s3->url($path);
+    }
 
    return $s3->temporaryUrl($path, now()->addMinutes($minutes));
    }
