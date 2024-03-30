@@ -56,7 +56,6 @@ class BaseController extends Controller
     if(!$path) {
     return null;
     }
-    Log::info($path);
     $s3 = Storage::disk('s3');
     if($minutes === null){
         $s3->setVisibility($path, "public");

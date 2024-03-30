@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use App\Http\Controllers\API\UserController;
 use Symfony\Component\HttpKernel\Attribute\WithHttpStatus;
 
 class CharacterController extends BaseController
@@ -20,11 +22,28 @@ class CharacterController extends BaseController
             if($character->theme && $character->theme->imageURL){
                 $character->theme->imageURL = $this->getS3Url($character->theme->imageURL);
             }
-            
         }
-        Log::info($characters);
         return $this->sendResponse($characters, 'Characters');
-    }       
+    }
+
+    public function myCharacters(Request $request){
+
+        $validatedData = $request->validate([
+            'userId' => 'required|int'
+        ]);
+
+        $users_with_characters = User::with('characters.moves', 'characters.theme')->findOrFail($validatedData['userId']);
+
+        foreach($users_with_characters->characters as $character){
+            $character->imageURL = $this->getS3Url($character->imageURL);
+
+            if($character->theme && $character->theme->imageURL){
+                $character->theme->imageURL = $this->getS3Url($character->theme->imageURL);
+            }
+        }
+
+        return $this->sendResponse($users_with_characters, 'UserswithCharacters');
+    }
 
     public function createCharacter(Request $request){
         $validatedData = $request->validate([
@@ -66,7 +85,6 @@ class CharacterController extends BaseController
     
 
     public function deleteCharacter(Request $request){
-        Log::info($request);
         $character = Character::find($request->characterId);
         $response = Storage::disk('s3')->delete($character->imageURL);
     
@@ -119,7 +137,6 @@ class CharacterController extends BaseController
     
             $character->save();
             $character->imageURL = $this->getS3URL($character->imageURL);
-            Log::info($character);
             return $this->sendResponse($character, 'Characters');
         }
     
