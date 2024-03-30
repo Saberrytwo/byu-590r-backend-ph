@@ -15,6 +15,7 @@ class Theme extends Model
     protected $fillable = [
         'title',
         'duration',
+        'imageURL',
     ];
 
     public function character()
