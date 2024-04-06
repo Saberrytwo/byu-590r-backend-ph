@@ -27,7 +27,7 @@ class Character extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withPivot('games_played', 'wins')->withTimestamps();
     }
 
     public function theme(){
