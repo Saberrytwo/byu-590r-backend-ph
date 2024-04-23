@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use App\Models\Theme;
 use App\Http\Controllers\API\UserController;
+use App\Models\Move;
 use Symfony\Component\HttpKernel\Attribute\WithHttpStatus;
 
 class CharacterController extends BaseController
@@ -16,6 +18,8 @@ class CharacterController extends BaseController
     
     public function index() {
         $characters = Character::with(['moves', 'theme'])->get();
+        $moves = Move::all();
+        $themes = Theme::all();
         foreach($characters as $character){
             $character->imageURL = $this->getS3Url($character->imageURL);
 
@@ -23,8 +27,61 @@ class CharacterController extends BaseController
                 $character->theme->imageURL = $this->getS3Url($character->theme->imageURL);
             }
         }
-        return $this->sendResponse($characters, 'Characters');
+        $response = [
+            'characters' => $characters,
+            'moves' => $moves,
+            'themes' => $themes,
+        ];
+        
+        return $this->sendResponse($response, 'Characters and Moves');
     }
+
+    public function checkoutCharacter(Request $request){
+        Log::alert("Entered");
+        $validatedData = $request->validate([
+            'userId' => 'required|int',
+            'characterId' => 'required|int'
+        ]);
+    
+        // Find the user and character
+        $user = User::findOrFail($validatedData['userId']);
+        $character = Character::findOrFail($validatedData['characterId']);
+    
+        if (!$user->characters()->where('characters.id', $character->id)->exists()) {
+            // If not, attach the character to the user
+            $user->characters()->syncWithoutDetaching($character->id);
+        } else {
+            $pivot = $user->characters()->where('characters.id', $character->id)->first()->pivot;
+            $pivot->increment('games_played');
+            $pivot->save();
+        }
+        
+    
+        return response()->json(['message' => 'Character associated with user successfully'], 200);
+    }
+
+    public function checkinCharacter(Request $request){
+        $validatedData = $request->validate([
+            'userId' => 'required|int',
+            'characterId' => 'required|int'
+        ]);
+    
+        // Find the user and character
+        $user = User::findOrFail($validatedData['userId']);
+        $character = Character::findOrFail($validatedData['characterId']);
+    
+        $pivot = $user->characters()->where('characters.id', $character->id)->first()->pivot;
+
+        if ($pivot['games_played'] > 0) {
+            // Decrement games_played
+            $pivot->decrement('games_played');
+        } else {
+            $user->characters()->detach($character->id);
+        }
+        
+        return response()->json(['message' => 'Character detached from user successfully'], 200);
+    }
+    
 
     public function myCharacters(Request $request){
 
@@ -32,7 +89,9 @@ class CharacterController extends BaseController
             'userId' => 'required|int'
         ]);
 
-        $users_with_characters = User::with('characters.moves', 'characters.theme')->findOrFail($validatedData['userId']);
+        $users_with_characters = User::with(['characters' => function ($query) {
+            $query->with('moves', 'theme')->withPivot('games_played', 'wins');
+        }])->findOrFail($validatedData['userId']);
 
         foreach($users_with_characters->characters as $character){
             $character->imageURL = $this->getS3Url($character->imageURL);

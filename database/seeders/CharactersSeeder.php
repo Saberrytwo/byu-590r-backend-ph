@@ -113,6 +113,17 @@ class CharactersSeeder extends Seeder{
             ['character_id' => 5, 'name' => 'Flying Slam', 'buttons' => 'Air Right A'],
             ['character_id' => 5, 'name' => 'Spinning Kong', 'buttons' => 'Air Left A'],
             ['character_id' => 5, 'name' => 'Ground Pound', 'buttons' => 'Air Up A'],
+            ['character_id' => null, 'name' => 'Blazer', 'buttons' => 'Up B'],
+            ['character_id' => null, 'name' => 'Counter', 'buttons' => 'Down B'],
+            ['character_id' => null, 'name' => 'Flare Blade', 'buttons' => 'Side B'],
+            ['character_id' => null, 'name' => 'Down Air', 'buttons' => 'Air Down A'],
+            ['character_id' => null, 'name' => 'Blade Dance', 'buttons' => 'Air Neutral A'],
+            ['character_id' => null, 'name' => 'Blade Dive', 'buttons' => 'Air Up B'],
+            ['character_id' => null, 'name' => 'Counter Surge', 'buttons' => 'Air Down B'],
+            ['character_id' => null, 'name' => 'Double-Edge Dance', 'buttons' => 'Air Side B'],
+            ['character_id' => null, 'name' => 'Final Cutter', 'buttons' => 'Air Up B'],
+            ['character_id' => null, 'name' => 'Hammer Flip', 'buttons' => 'Air Down B'],
+            ['character_id' => null, 'name' => 'Quick Draw', 'buttons' => 'Air Forward B'],
         ];
 
         $themes = [

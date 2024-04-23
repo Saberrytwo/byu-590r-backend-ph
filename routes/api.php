@@ -36,6 +36,8 @@ Route::controller(CharacterController::class)->group(function() {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('characters', 'index');
         Route::get('charactersforuser', 'myCharacters');
+        Route::post('checkout', 'checkoutCharacter');
+        Route::post('checkin', 'checkinCharacter');
         Route::post('create', 'createCharacter');
         Route::delete('delete', 'deleteCharacter');
         Route::put('update', 'updateCharacter');

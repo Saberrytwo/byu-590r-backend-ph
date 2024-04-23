@@ -1,4 +1,4 @@
-Hello manager. Here is the list of played $characterUserRelationships and their users:
+Hello manager. Here is the list of played characters and their users:
 
 <table>
 <thead>
