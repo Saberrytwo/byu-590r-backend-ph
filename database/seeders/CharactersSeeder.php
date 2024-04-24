@@ -56,6 +56,7 @@ class CharactersSeeder extends Seeder{
                 'user_id' => null,
             ],
         ];
+        Character::insert($characters);
 
         $moves = [
             ['character_id' => 1, 'name' => 'Middle Kick', 'buttons' => 'Left/Right A'],
@@ -124,6 +125,109 @@ class CharactersSeeder extends Seeder{
             ['character_id' => null, 'name' => 'Final Cutter', 'buttons' => 'Air Up B'],
             ['character_id' => null, 'name' => 'Hammer Flip', 'buttons' => 'Air Down B'],
             ['character_id' => null, 'name' => 'Quick Draw', 'buttons' => 'Air Forward B'],
+            [
+                'character_id' => null,
+                'name' => 'Pikmin Throw',
+                'buttons' => 'Special',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Whistle',
+                'buttons' => 'Down B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Smash Attack',
+                'buttons' => 'Side A',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Rocket Barrel Attack',
+                'buttons' => 'Up B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Belly Super Armor',
+                'buttons' => 'Down B',
+            ],            
+            [
+                'character_id' => null,
+                'name' => 'Green Missile',
+                'buttons' => 'Side B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Super Jump Punch',
+                'buttons' => 'Up B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Luigi Cyclone',
+                'buttons' => 'Down B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Thunder Jolt',
+                'buttons' => 'Special',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Fireball',
+                'buttons' => 'Neutral B',
+            ],
+            
+            [
+                'character_id' => null,
+                'name' => 'Rollout',
+                'buttons' => 'Side B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Pound',
+                'buttons' => 'Neutral B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Rest',
+                'buttons' => 'Down B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Sing',
+                'buttons' => 'Neutral B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Puff Up',
+                'buttons' => 'Up B',
+            ],
+            
+            [
+                'character_id' => null,
+                'name' => 'Blunderbuss',
+                'buttons' => 'Neutral B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Propellerpack',
+                'buttons' => 'Up B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Krown Toss',
+                'buttons' => 'Side B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Gut Check',
+                'buttons' => 'Down B',
+            ],
+            [
+                'character_id' => null,
+                'name' => 'Kannonball',
+                'buttons' => 'Side B',
+            ],
+            
         ];
 
         $themes = [
@@ -156,10 +260,39 @@ class CharactersSeeder extends Seeder{
                 'title' => 'DK Island Swing',
                 'duration' => '3:24',
                 'imageURL' => 'images/themes/dk_theme.jpeg',
-            ]
+            ],
+            [
+                'character_id' => null,
+                'title' => 'Fire Emblem Theme (Roy)',
+                'duration' => '2:58',
+                'imageURL' => 'images/themes/roy_victory.jpeg',
+            ],
+            [
+                'character_id' => null,
+                'title' => 'Pikmin Adventure',
+                'duration' => '4:12',
+                'imageURL' => 'images/themes/olimar_theme.jpeg',
+            ],
+            [
+                'character_id' => null,
+                'title' => 'Mansion Melodies',
+                'duration' => '3:45',
+                'imageURL' => 'images/themes/luigi_theme.jpeg',
+            ],
+            [
+                'character_id' => null,
+                'title' => 'Dreamland Serenade',
+                'duration' => '3:10',
+                'imageURL' => 'images/themes/jigglypuff_theme.jpeg',
+            ],
+            [
+                'character_id' => null,
+                'title' => 'K. Rool\'s Rampage',
+                'duration' => '3:55',
+                'imageURL' => 'images/themes/krool_theme.jpeg',
+            ]            
         ];
 
-        Character::insert($characters);
         Move::insert($moves);
         Theme::insert($themes);
     }
